@@ -110,7 +110,7 @@ public class Controller {
         List<Student> studentsList=new ArrayList<>(studentRepository.findAll());
         studentsList = studentsList.stream()
                 .filter( (Student student) ->
-                        student.getTotalCredits() > 6)
+                        student.getTotalCredits() <20)
                 .collect(Collectors.toList());
         return studentsList;
     }

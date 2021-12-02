@@ -65,11 +65,11 @@ public class RegistrationSystem {
         if(course.getMaxEnrollment() - course.getStudentsEnrolled().size()>=1){       // daca nr maxim de studenti inscrisi la un curs nu a fost atins inca atunci:
             if(student.getTotalCredits() + course.getCredits()<=30){  // daca nr actual de credite al studentului + nr de credite al cursului de adaugat in lista sa de cursuri nu depaseste 30
 
-                List<Course> temp = student.getEnrolledCourses();
-                temp.add(course);
+                List<Course> courses = student.getEnrolledCourses();
+                courses.add(course);
 
-                List<Student> aux=course.getStudentsEnrolled();
-                aux.add(student);
+                List<Student> studentList=course.getStudentsEnrolled();
+                studentList.add(student);
 
                 courseRepository.update(course);
                 studentRepository.update(student);
@@ -89,6 +89,7 @@ public class RegistrationSystem {
 
 
     }
+
 
     /**
      * Retrieve courses with free places list.

@@ -56,6 +56,7 @@ public class Menu {
                 case 1 -> {
                     long studentID,courseID;
                     System.out.println(registrationSystem.getController().getAllStudents());
+                    System.out.println("Choose id student: ");
                     try{
                        studentID= scanner.nextLong();
                     }catch (Exception e){
@@ -66,6 +67,7 @@ public class Menu {
 
 
                     System.out.println(registrationSystem.getController().getAllCourses());
+                    System.out.println("Choose id course: ");
                     try{
                       courseID = scanner.nextLong();
 
@@ -87,29 +89,26 @@ public class Menu {
 
                 }
                 case 3 -> {
-                    System.out.println(registrationSystem.getController().getAllStudents());
-                    StringBuilder myString = new StringBuilder();
-                    for (Course course : registrationSystem.getController().getAllCourses()) {
-                        myString.append(course).append("\n");
-                    }
-                    System.out.println(myString);
 
-
-                    long studentId;
+                    long courseID;
+                    System.out.println(registrationSystem.getController().getAllCourses());
+                    System.out.println("Choose id course: ");
                     try{
-                        studentId= scanner.nextLong();
+                        courseID = scanner.nextLong();
+
                     }catch (Exception e){
-                        System.out.println("Wrong id!");
+                        System.out.println("Wrong id");
                         scanner.nextLine();
                         break;
                     }
 
-                    StringBuilder myString2 = new StringBuilder();
-                    for (Course course : registrationSystem.getController().findOneStudent(studentId).getEnrolledCourses()) {
-                        myString2.append(course).append("\n");
+                    StringBuilder myString = new StringBuilder();
+                    for (Student student : registrationSystem.retrieveStudentsEnrolledForACourse(registrationSystem.getController().findOneCourse(courseID))) {
+                        myString.append(student).append("\n");
                     }
-                    System.out.println(myString2);
-                    System.out.println(registrationSystem.getController().getAllStudents());
+                    System.out.println(myString);
+
+
 
                 }
                 case 4 -> {
@@ -179,6 +178,7 @@ public class Menu {
                     }
                     System.out.println(myString);
                 }
+
 
             }
         } while (input != 0);

@@ -32,7 +32,7 @@ public class Student extends Person{
     }
 
 
-    private int totalCreditsOfaStudent(){
+    public int totalCreditsOfaStudent(){
         int totalCredits = 0;
         for(Course course : enrolledCourses)
             totalCredits += course.getCredits();
