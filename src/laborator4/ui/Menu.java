@@ -2,6 +2,7 @@ package laborator4.ui;
 
 
 import laborator4.controller.RegistrationSystem;
+import laborator4.exceptions.ExceptionMaximCredits;
 import laborator4.model.Course;
 import laborator4.model.Student;
 import laborator4.model.Teacher;
@@ -21,7 +22,7 @@ public class Menu {
     /**
      * The method for the UI Menu.
      */
-    public void run() {
+    public void run() throws ExceptionMaximCredits {
 
 
         int input;
@@ -76,8 +77,12 @@ public class Menu {
                         scanner.nextLine();
                         break;
                     }
-                    registrationSystem.register(registrationSystem.getController().findOneCourse(courseID), registrationSystem.getController().findOneStudent(studentID));
 
+                    try {
+                        registrationSystem.register(registrationSystem.getController().findOneCourse(courseID), registrationSystem.getController().findOneStudent(studentID));
+                    }catch (ExceptionMaximCredits exceptionMaximCredits){
+                        System.out.println("Maxim credits reached");
+                    }
                 }
                 case 2 -> {
                     StringBuilder myString = new StringBuilder();
@@ -186,71 +191,5 @@ public class Menu {
 
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 

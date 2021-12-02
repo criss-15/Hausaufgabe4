@@ -1,6 +1,7 @@
 package laborator4;
 
 import laborator4.controller.RegistrationSystem;
+import laborator4.exceptions.ExceptionMaximCredits;
 import laborator4.model.Course;
 import laborator4.model.Student;
 import laborator4.model.Teacher;
@@ -31,7 +32,7 @@ class RegistrationSystemTest {
 
 
     @Test
-    void register() {
+    void register() throws ExceptionMaximCredits {
 
         assert(!course1.getStudentsEnrolled().contains(student1));
         assert(registrationSystem.register(course1,student1));
@@ -51,7 +52,7 @@ class RegistrationSystemTest {
     }
 
     @Test
-    void retrieveStudentsEnrolledForACourse() {
+    void retrieveStudentsEnrolledForACourse() throws ExceptionMaximCredits {
         registrationSystem.register(course1,student1);
         assert(registrationSystem.retrieveStudentsEnrolledForACourse(course1).size()==1);
         assert(registrationSystem.retrieveStudentsEnrolledForACourse(course2).size()==0);

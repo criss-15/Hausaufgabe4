@@ -1,5 +1,7 @@
 package laborator4.controller;
 
+import laborator4.exceptions.ExceptionLimitReached;
+import laborator4.exceptions.ExceptionMaximCredits;
 import laborator4.model.Course;
 import laborator4.model.Student;
 import laborator4.model.Teacher;
@@ -61,8 +63,8 @@ public class RegistrationSystem {
      * @param student the student
      * @return the boolean
      */
-    public boolean register(Course course, Student student) {
-        if(course.getMaxEnrollment() - course.getStudentsEnrolled().size()>=1){       // daca nr maxim de studenti inscrisi la un curs nu a fost atins inca atunci:
+    public boolean register(Course course, Student student) throws ExceptionLimitReached, ExceptionMaximCredits{
+        if(course.getMaxEnrollment() - course.getStudentsEnrolled().size()>=1){       // daca nr maxim de studenti inscrisi la un curs nu a fost atins inca atunci
             if(student.getTotalCredits() + course.getCredits()<=30){  // daca nr actual de credite al studentului + nr de credite al cursului de adaugat in lista sa de cursuri nu depaseste 30
 
                 List<Course> courses = student.getEnrolledCourses();
@@ -74,17 +76,16 @@ public class RegistrationSystem {
                 courseRepository.update(course);
                 studentRepository.update(student);
 
+
                 return true;
             }
             else{
-                System.out.println("To many credits!");
-                return false;
+                throw new ExceptionMaximCredits("Maxim number of credits is reached");
             }
 
         }
-        else{
-            System.out.println("No!");
-            return false;
+        else {
+            throw new ExceptionLimitReached("No more pleces by this course");
         }
 
 

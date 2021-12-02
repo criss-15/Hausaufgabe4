@@ -1,6 +1,7 @@
 package laborator4.ui;
 
 import laborator4.controller.RegistrationSystem;
+import laborator4.exceptions.ExceptionMaximCredits;
 import laborator4.model.Course;
 import laborator4.model.Student;
 import laborator4.model.Teacher;
@@ -20,7 +21,7 @@ public class StartApp {
      * Start point of the application
      * @param args command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ExceptionMaximCredits {
         System.out.println("Start point");
         List<Student> studentList=new ArrayList<>();
         List<Course> courseList=new ArrayList<>();
