@@ -10,6 +10,9 @@ import laborator4.repository.TeacherRepository;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The type Registration system.
+ */
 public class RegistrationSystem {
 
     private CourseRepository courseRepository;
@@ -50,18 +53,26 @@ public class RegistrationSystem {
     }
 
 
-    public boolean register(Course k, Student s) {
-        if(k.getMaxEnrollment() - k.getStudentsEnrolled().size()>=1){       // daca nr maxim de studenti inscrisi la un curs nu a fost atins inca atunci:
-            if(s.getTotalCredits() + k.getCredits()<=30){  // daca nr actual de credite al studentului + nr de credite al cursului de adaugat in lista sa de cursuri nu depaseste 30
+    /**
+     * Register boolean.
+     * students register to course
+     *
+     * @param course  the course
+     * @param student the student
+     * @return the boolean
+     */
+    public boolean register(Course course, Student student) {
+        if(course.getMaxEnrollment() - course.getStudentsEnrolled().size()>=1){       // daca nr maxim de studenti inscrisi la un curs nu a fost atins inca atunci:
+            if(student.getTotalCredits() + course.getCredits()<=30){  // daca nr actual de credite al studentului + nr de credite al cursului de adaugat in lista sa de cursuri nu depaseste 30
 
-                List<Course> temp = s.getEnrolledCourses();
-                temp.add(k);
+                List<Course> temp = student.getEnrolledCourses();
+                temp.add(course);
 
-                List<Student> aux=k.getStudentsEnrolled();
-                aux.add(s);
+                List<Student> aux=course.getStudentsEnrolled();
+                aux.add(student);
 
-                courseRepository.update(k);
-                studentRepository.update(s);
+                courseRepository.update(course);
+                studentRepository.update(student);
 
                 return true;
             }
@@ -79,6 +90,11 @@ public class RegistrationSystem {
 
     }
 
+    /**
+     * Retrieve courses with free places list.
+     *
+     * @return the list
+     */
     public List<Course> retrieveCoursesWithFreePlaces(){
         List<Course> temp=new ArrayList<>();
         for (Course k: courseRepository.findAll()) {
@@ -88,11 +104,23 @@ public class RegistrationSystem {
         return temp;
     }
 
-    public List<Student> retrieveStudentsEnrolledForACourse(Course k){
-        return k.getStudentsEnrolled();
+
+    /**
+     * Retrieve students enrolled for a course list.
+     *
+     * @param course the course
+     * @return the list
+     */
+    public List<Student> retrieveStudentsEnrolledForACourse(Course course){
+        return course.getStudentsEnrolled();
 
     }
 
+    /**
+     * Get all courses list.
+     *
+     * @return the list
+     */
     public List<Course> getAllCourses(){
         return courseRepository.findAll();
 

@@ -14,6 +14,12 @@ public class TeacherRepository extends InMemoryRepository<Teacher>{
     }
 
 
+    /**
+     * Find one teacher.
+     *
+     * @param id the id
+     * @return the teacher
+     */
     public Teacher findOne(Long id) {
         for( Teacher teacher :  teacherList)
             if(teacher.getId().equals(id))
@@ -22,6 +28,11 @@ public class TeacherRepository extends InMemoryRepository<Teacher>{
     }
 
 
+    /**
+     * Find all list.
+     *
+     * @return the list
+     */
     public List<Teacher> findAll() {
         return teacherList;
     }
@@ -36,6 +47,12 @@ public class TeacherRepository extends InMemoryRepository<Teacher>{
     }
 
 
+    /**
+     * Delete teacher.
+     *
+     * @param id the id
+     * @return the teacher
+     */
     public Teacher delete(Long id) {
         Teacher teacher = findOne(id);
         if(teacher==null) {

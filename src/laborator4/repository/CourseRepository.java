@@ -23,14 +23,12 @@ public class CourseRepository extends InMemoryRepository<Course> {
     }
 
 
-    public List<Course> getCourseList() {
-        return courseList;
-    }
-
-    public void setCourseList(List<Course> courseList) {
-        this.courseList = courseList;
-    }
-
+    /**
+     * Find one course.
+     *
+     * @param id the id
+     * @return the course
+     */
     public Course findOne(Long id) {
          for( Course k : courseList)
              if(k.getId().equals(id))
@@ -39,7 +37,11 @@ public class CourseRepository extends InMemoryRepository<Course> {
     }
 
 
-
+    /**
+     * Find all courses.
+     *
+     * @return the list
+     */
     public List<Course> findAll() {
         return courseList;
     }
@@ -55,6 +57,12 @@ public class CourseRepository extends InMemoryRepository<Course> {
     }
 
 
+    /**
+     * Delete course.
+     *
+     * @param id the id
+     * @return the course
+     */
     public Course delete(Long id) {
         Course k = findOne(id);
         if(k==null) {

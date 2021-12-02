@@ -19,16 +19,14 @@ public class StudentRepository extends InMemoryRepository<Student>{
         this.studentList = studentList;
     }
 
-    public List<Student> getStudentList() {
-        return studentList;
-    }
-
-    public void setStudentList(List<Student> studentList) {
-        this.studentList = studentList;
-    }
 
 
-
+    /**
+     * Find one student.
+     *
+     * @param id the id
+     * @return the student
+     */
     public Student findOne(Long id) {
         for( Student student :  studentList)
             if(student.getStudentID().equals(id))
@@ -37,6 +35,11 @@ public class StudentRepository extends InMemoryRepository<Student>{
     }
 
 
+    /**
+     * Find all list.
+     *
+     * @return the list
+     */
     public List<Student> findAll() {
         return studentList;
     }
@@ -51,6 +54,12 @@ public class StudentRepository extends InMemoryRepository<Student>{
     }
 
 
+    /**
+     * Delete student.
+     *
+     * @param id the id
+     * @return the student
+     */
     public Student delete(Long id) {
         Student student = findOne(id);
         if(student==null) {

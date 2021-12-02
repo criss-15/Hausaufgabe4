@@ -40,6 +40,12 @@ public class Controller {
 
     public List<Course> getKursListTeacher(Long id){return teacherRepository.findOne(id).getCourses();} //returneaza cursurile unui profesor
 
+
+    /**
+     * Sort courses list by name.
+     *
+     * @return the list
+     */
     public List<Course> sortKurs(){ //sorteaza cursurile dupa nume, iar daca au numele la fel, le sorteaza dupa nr de locuri libere
         List<Course> courseList=new ArrayList<>(courseRepository.findAll());
 
@@ -55,6 +61,14 @@ public class Controller {
     return courseList;
     }
 
+
+
+
+    /**
+     * Filter kurs list.
+     *
+     * @return the list
+     */
     public List<Course> filterKurs(){ //afiseaza cursurile cu locuri libere
         List<Course> courses=new ArrayList<>(courseRepository.findAll());
         courses = courses.stream()

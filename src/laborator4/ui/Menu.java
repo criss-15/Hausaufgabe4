@@ -17,6 +17,9 @@ public class Menu {
         this.registrationSystem = registrationSystem;
     }
 
+    /**
+     * The method for the UI Menu.
+     */
     public void run() {
 
 

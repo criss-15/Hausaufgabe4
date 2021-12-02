@@ -8,6 +8,12 @@ import java.util.List;
 
 public class Reader {
 
+    /**
+     * Read file list.
+     *
+     * @param file the file
+     * @return the list
+     */
     public static List<List<String>> readFile(String file){
         List<List<String>> toReturn = new ArrayList<>();
 
